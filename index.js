@@ -1,8 +1,10 @@
 const express = require('express');
+const cores = require('cors');
 require('./db/config');
-const User = require('./db/user')
+const User = require('./db/user');
 const app = express();
 app.use(express.json());
+app.use(cores());  //middleware
 app.get('/', (req, resp) => {
     resp.send("App is working now");
 });
