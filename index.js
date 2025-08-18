@@ -4,6 +4,7 @@ require('./db/config');
 const User = require('./db/user');
 const app = express();
 app.use(express.json());
+const Product = require('./db/product')
 app.use(cores());  //middleware
 app.get('/', (req, resp) => {
     resp.send("App is working now");
@@ -31,4 +32,9 @@ app.post("/login", async (req, resp) => {
     }
 });
 
+app.post("/add-product", async (req, resp) => {
+    let data = new Product(req.body);
+    let result = await data.save();
+    resp.send(result);
+})
 app.listen(5600);
