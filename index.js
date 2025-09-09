@@ -47,4 +47,9 @@ app.get("/product-list", async (req, resp) => {
     }
 });
 
+app.delete("/product/:id", async (req, resp) => {
+    const result = await Product.deleteOne({_id:req.params.id});
+    resp.send(result);
+});
+
 app.listen(5600);
