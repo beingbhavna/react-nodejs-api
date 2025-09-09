@@ -1,8 +1,8 @@
 const express = require('express');
+const app = express();
 const cores = require('cors');
 require('./db/config');
 const User = require('./db/user');
-const app = express();
 app.use(express.json());
 const Product = require('./db/product')
 app.use(cores());  //middleware
@@ -36,5 +36,15 @@ app.post("/add-product", async (req, resp) => {
     let data = new Product(req.body);
     let result = await data.save();
     resp.send(result);
-})
+});
+
+app.get("/product-list", async (req, resp) => {
+    let products = await Product.find();
+    if (products.length) {
+        resp.send(products);
+    } else {
+        resp.send({ result: "No Products Found" });
+    }
+});
+
 app.listen(5600);
