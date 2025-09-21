@@ -48,8 +48,23 @@ app.get("/product-list", async (req, resp) => {
 });
 
 app.delete("/product/:id", async (req, resp) => {
-    const result = await Product.deleteOne({_id:req.params.id});
+    const result = await Product.deleteOne({ _id: req.params.id });
     resp.send(result);
 });
+
+app.get("/product/:id", async (req, resp) => {
+    let result = await Product.findOne({ _id: req.params.id });
+    if (result) {
+        resp.send(result);
+    } else {
+        resp.send("Record not found!!");
+    }
+});
+
+app.put("/product/update/:id", async (req, resp) => {
+    let result = new Product({ _id: req.params.id });
+    let data = await result.save();
+    resp.send(data);
+})
 
 app.listen(5600);
