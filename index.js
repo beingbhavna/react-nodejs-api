@@ -8,6 +8,8 @@ const User = require('./db/user');
 app.use(express.json());
 const Product = require('./db/product')
 app.use(cores());  //middleware
+import dotenv from "dotenv";
+dotenv.config();
 
 app.get('/', (req, resp) => {
     resp.send("App is working now");
@@ -117,4 +119,4 @@ function verifyToken(req, resp, next) {
 }
 
 const PORT = process.env.PORT || 5600;
-app.listen(PORT, () => console.log("Server running"));
+app.listen(PORT, () => console.log("Server running on port", PORT));
