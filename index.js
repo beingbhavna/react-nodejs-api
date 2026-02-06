@@ -8,7 +8,7 @@ const User = require('./db/user');
 app.use(express.json());
 const Product = require('./db/product')
 app.use(cores());  //middleware
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 dotenv.config();
 
 app.get('/', (req, resp) => {
