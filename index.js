@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 const express = require('express');
 const app = express();
 const cores = require('cors');
@@ -8,7 +9,6 @@ const User = require('./db/user');
 app.use(express.json());
 const Product = require('./db/product')
 app.use(cores());  //middleware
-const dotenv = require("dotenv");
 dotenv.config();
 
 app.get('/', (req, resp) => {

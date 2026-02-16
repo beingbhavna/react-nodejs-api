@@ -18,10 +18,10 @@
 // connectDb();
 // app.listen(5600);
 
-const dotenv = require("dotenv");
-dotenv.config();
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/e-com')
+const dotenv = require("dotenv");
+console.log("MONGO_URI =", process.env.MONGO_URI);
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log("Mongo error", err));
